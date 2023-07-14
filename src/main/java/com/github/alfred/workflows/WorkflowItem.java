@@ -1,6 +1,5 @@
 package com.github.alfred.workflows;
 
-import java.time.Clock;
 import lombok.Builder;
 import lombok.Data;
 
