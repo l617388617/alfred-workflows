@@ -2,6 +2,9 @@ package com.github.alfred.workflows;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -49,6 +52,13 @@ public class TimestampConvertDateMain {
             long timestamp = NumberUtils.toLong(arg);
             String dateStr = format.format(new Date(timestamp));
             workflowItemList.addItem(builder.title(dateStr).subtitle(String.valueOf(timestamp)).arg(dateStr).build());
+            System.out.println(workflowItemList.toXMLString());
+            return;
+        }
+
+        if (StringUtils.equals(arg, "dt")) {
+            String dateStr = DateTimeFormatter.ofPattern("yyyyMMdd").format(LocalDate.now().minusDays(1));
+            workflowItemList.addItem(builder.title(dateStr).subtitle("dt").arg(dateStr).build());
             System.out.println(workflowItemList.toXMLString());
             return;
         }
